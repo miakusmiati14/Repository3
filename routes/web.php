@@ -1,4 +1,6 @@
 <?php
+
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RepositoryController;
 use Illuminate\Support\Facades\auth;
@@ -33,4 +35,5 @@ Auth::routes();
 // Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 // // Route::get('/user/{id}/delete', [UserController::class, 'destroy'])->name('user.delete');
 // Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('user.delete');
-Route::resource('repository', RepsitoryController::class);
+
+Route::resource('repository', RepositoryController::class);
