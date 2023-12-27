@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -29,9 +31,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @Auth
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="{{ route('repository.index') }}" class="nav-link">Repository</a>
+                        </li>
+                        @if (Auth::user()->role_id == 1)
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}" class="nav-link">Data User</a>
+                        </li>   
+                        @endif
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Repository Baru</a>
+                        </li>
 
                     </ul>
+                    @endAuth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -76,5 +91,11 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#table').DataTable();
+        });
+    </script>
 </body>
-</html>

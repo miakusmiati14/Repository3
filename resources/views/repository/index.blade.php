@@ -15,8 +15,7 @@
                     <a href="{{ route('repository.create') }}" class="btn btn-dark">Create</a>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered" id="table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
@@ -36,12 +35,14 @@
                                         <td>{{ $repository->year }}</td>
                                         <td>{{ $repository->description }}</td>
                                         <td>
+                                            @if (Auth::user()->role_id == 1)
                                             <a href="{{ route('repository.edit', $repository->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                             <form action="{{ route('repository.destroy', $repository->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this repository?')">Delete</button>
                                             </form>
+                                            @endif
 
                                         </td>
                                     </tr>
@@ -52,7 +53,6 @@
                                 @endforelse
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
         </div>

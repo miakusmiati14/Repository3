@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\RepositoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/repository', [RepositoryController::class, 'index']);
+Route::post('/repository/store', [RepositoryController::class, 'store']);
+Route::post('/repository/update', [RepositoryController::class, 'update']);
+Route::get('/repository/{id}/destroy', [RepositoryController::class, 'destroy']);
+Route::get('/repository/{id}/show', [RepositoryController::class, 'show']);
